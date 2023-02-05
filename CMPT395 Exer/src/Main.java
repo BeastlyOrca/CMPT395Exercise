@@ -2,6 +2,11 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Nadir Bakridi
+ * Feb. 5/23
+ * CMPT 395 Exercise
+ */
 public class Main {
     public static void main(String[] args) {
 
