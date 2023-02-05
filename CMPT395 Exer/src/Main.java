@@ -5,8 +5,8 @@ import java.util.regex.Pattern;
 public class Main {
     public static void main(String[] args) {
 
-        //String word = fizzBuzz();
-        //System.out.println(word);
+        String word = fizzBuzz();
+        System.out.println(word);
         password();
     }
 
@@ -39,21 +39,29 @@ public class Main {
         System.out.print("Enter password: ");
         String input = myScan.nextLine();
 
-        lengthCheck(input);
-        numCheck(input);
-        capCheck(input);
-        specialCheck(input);
+        int checkLen;
+        int checkNum;
+        int checkCap;
+        int checkSpec;
+        checkLen = lengthCheck(input);
+        checkNum =numCheck(input);
+        checkCap = capCheck(input);
+        checkSpec =specialCheck(input);
+
+        if (checkLen == 1 && checkNum == 1 && checkCap == 1 && checkSpec == 1) {System.out.println("Valid Password");}
 
 
     }
-    public static void lengthCheck(String pass) {
+    public static int lengthCheck(String pass) {
         if (pass.length() < 8) {
             System.out.println("Password must be at least 8 characters");
+            return 0;
         }
+        return 1;
     }
 
 
-    public static void numCheck(String pass){
+    public static int numCheck(String pass){
         char ch;
         int count = 0;
 
@@ -67,11 +75,13 @@ public class Main {
 
         if(count < 2) {
             System.out.println("password must contain at least two numbers");
+            return 0;
         }
+        return 1;
     }
 
 
-    public static void capCheck(String pass){
+    public static int capCheck(String pass){
         char ch;
         boolean capitalFlag = false;
 
@@ -85,17 +95,24 @@ public class Main {
 
         if(!capitalFlag) {
             System.out.println("password must contain at least one capital letter");
+            return 0;
         }
+        return 1;
     }
 
-    public static void specialCheck(String pass){
+    public static int specialCheck(String pass){
+
+        // Pattern and Matcher and Regex found on https://stackoverflow.com/questions/1795402/check-if-a-string-contains-a-special-character
+        // and the structure is used to handle special characters
         Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
         Matcher m = p.matcher(pass);
         boolean check = m.find();
 
         if (!check) {
             System.out.println("password must contain at least one special character");
+            return 0;
         }
+        return 1;
     }
 
 }
